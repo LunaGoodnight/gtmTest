@@ -1,8 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
 import styled from "styled-components";
-import { useState } from "react";
-import { Tab } from "../utils/Tab";
+import { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("GTM-P57XHP8");
 
 export const CuteButton = styled.button`
   background: teal;
@@ -11,6 +13,15 @@ export const CuteButton = styled.button`
   color: #fff;
   border-radius: 1rem;
   cursor: pointer;
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+`;
+
+export const Input = styled.input`
+  padding: 2rem;
+  border: 2px solid skyblue;
 `;
 
 const tabList = [
@@ -25,16 +36,44 @@ const tabList = [
 ];
 
 function App() {
-  const [data, setData] = useState("cuteLuna");
+  const [name, setName] = useState("cuteLuna");
+  const [email, setEmail] = useState("default");
+
+  useEffect(() => {
+    ReactGA.event({
+      event: "search_event_cuteLuna",
+      SearchedName: name,
+      SearchedEmail: email,
+    });
+  }, [name, email]);
   return (
     <div className="App">
       <header className="App-header">
-        <Tab tabList={tabList} />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>A website to practice gtm</p>
-        <CuteButton type="button" id="click-me">
-          Click Me
-        </CuteButton>
+        <FlexBox>
+          <div>
+            <p>Enter Name</p>
+            <Input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <p>Enter Email</p>
+
+            <Input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>A website to practice gtm</p>
+            <CuteButton type="button" id="click-me">
+              Click Me
+            </CuteButton>
+          </div>
+        </FlexBox>
       </header>
     </div>
   );
