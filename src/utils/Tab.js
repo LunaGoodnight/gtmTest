@@ -1,4 +1,4 @@
-import { ManyTabLine, TabContainer, TabItem } from "../styles/tabStyle";
+import { ManyTabLine, TabContainer, TabItem } from "./tabStyle";
 import styled from "styled-components";
 
 export const TabBorderBottom = styled.div`
