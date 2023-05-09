@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 
-ReactGA.initialize("GTM-P57XHP8");
 
 export const CuteButton = styled.button`
   background: teal;
@@ -40,11 +39,17 @@ function App() {
   const [email, setEmail] = useState("default");
 
   useEffect(() => {
-    ReactGA.event({
+    // ReactGA.event({
+    //   event: "search_event_cuteLuna",
+    //   SearchedName: name,
+    //   SearchedEmail: email,
+    // });
+
+    window.dataLayer.push({
       event: "search_event_cuteLuna",
-      SearchedName: name,
-      SearchedEmail: email,
-    });
+        SearchedName: name,
+        SearchedEmail: email,
+     })
   }, [name, email]);
   return (
     <div className="App">
