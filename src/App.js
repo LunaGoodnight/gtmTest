@@ -46,9 +46,9 @@ function App() {
     // });
 
     window.dataLayer.push({
-      event: "search_event_cuteLuna",
-        SearchedName: name,
-        SearchedEmail: email,
+      'event': "search_event_cuteLuna",
+        'SearchedName': name,
+        'SearchedEmail': email,
      })
   }, [name, email]);
   return (
